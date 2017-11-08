@@ -2,12 +2,12 @@
 
 for line in open("ELECTION_ID", "r"):
     base = 'http://historical.elections.virginia.gov/elections/download/{}/precincts_include:0/'
-    year = line[:4]
-    year_id = line[-6:-1]
+    year = line[:4] # Year as first 4 numbers
+    year_id = line[-6:-1] # ID as last 5 numbers
     lastyear_url = base.format(year_id)
     lastyear_text = requests.get(lastyear_url).text
-    file_name = "president_general_" + year +".csv"
-    with open(file_name, "w") as out:
+    file_name = "president_general_" + year +".csv" # Name files
+    with open(file_name, "w") as out: # Creates files
         out.write(lastyear_text)
 
 
